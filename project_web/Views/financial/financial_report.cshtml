@@ -1,0 +1,206 @@
+﻿@using System.Threading;
+@{
+    ViewBag.Title = "financial_report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>financial_report</h2>
+<div class="finicial finicial-fin-rpt features">
+
+    <div class="container">
+
+        <!--navbar-->
+
+        <ul class="nav nav-tabs row  g-2 d-flex">
+
+            <li class="nav-item   col-4">
+
+                <div class="nav-link" data-bs-toggle="tab" data-bs-target="X_#tab-1">
+
+                    <a href="@Url.Action("monthly_revenue","financial")"><h4></h4></a>
+
+                </div>
+
+            </li><!-- End tab nav item -->
+
+
+
+            <li class="nav-item active col-4">
+
+                <div class="nav-link  show" data-bs-toggle="tab" data-bs-target="#tab-2">
+
+                    <a href="@Url.Action("financial_report","financial")?id=@ViewBag.max"><h4></h4></a>
+
+                </div><!-- End tab nav item -->
+
+
+
+            <li class="nav-item col-4">
+
+                <div class="nav-link" data-bs-toggle="tab" data-bs-target="X_#tab-3">
+
+                    <a href="@Url.Action("annual_report","financial")"><h4></h4></a>
+
+                </div>
+
+            </li><!-- End tab nav item -->
+
+        </ul>
+
+        <!---->
+
+        <div class="tab-content">
+
+            <div class="" id="tab-2">
+
+                <div class="row pageCtrlBar">
+
+                    <div class="col-12">
+
+                        <p>Select a year:</p>
+
+                        <select name="droupdown" id="finacial-report-select-box">
+
+                            @foreach (var item in Model.date)
+
+
+                            {
+
+                                <option value="@item.num">@item.year</option>
+
+                            }
+
+                            <option value="" selected disabled hidden>@Model.id</option>
+
+                        </select>
+
+                    </div>
+
+                    @*<div>
+
+                            <ul class="quarter-ul">
+
+                                <li>Q1</li>
+
+                                <li>Q2</li>
+
+                                <li>Q3</li>
+
+                                <li>Q4</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="mg-bottom-30 flex-block link">
+
+                            @foreach (var item in Model.context)
+
+                            {
+
+                                <div class="@item.classname">
+
+                                    <p><a href="@Url.Content(item.download)"><img src="~/img/icon/icon_pdf.png" /></a></p>
+
+                                </div>
+
+                            }
+
+                        </div>@**@
+
+                </div><br /><br />
+
+                <table class="table finicial-fin-rpt-table">
+
+                    <tr>
+
+                        <th class="change-finicial-table-text" rowspan="2">@Model.id</th>
+
+                        <td>Q1</td>
+
+                        <td>Q2</td>
+
+                        <td>Q3</td>
+
+                        <td>Q4</td>
+
+                        <td>Q4()</td>
+
+                    </tr>
+
+                    <tr>
+
+                        @if (Thread.CurrentThread.CurrentUICulture.Name == "zh-TW" || Thread.CurrentThread.CurrentUICulture.Name == "")
+
+
+                        {
+
+
+                            foreach (var item in Model.context_ch)
+
+
+                            {
+
+                                <td class="@item.classname">
+
+                                    <a href="@Url.Content(item.download)" target="_blank"><i class="bi bi-file-earmark-arrow-down-fill" style="font-size: 36px;"></i></a>
+
+                                </td>
+
+                            }
+
+
+                        }
+
+
+                        else
+
+
+                        {
+
+
+                            foreach (var item in Model.context_en)
+
+
+                            {
+
+                                <td class="@item.classname">
+
+                                    <a href="@Url.Content(item.download)" target="_blank"><i class="bi bi-file-earmark-arrow-down-fill" style="font-size: 36px;"></i></a>
+
+                                </td>
+
+                            }
+
+
+                        }
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+    $(function () {
+
+        $("#finacial-report-select-box").change(function () {
+
+            var find = $(this).find(":selected").text();
+
+            window.location = '@Url.Action("financial_report", "financial")?id=' + find;
+
+        }
+
+        )
+
+    });
+
+</script>
+

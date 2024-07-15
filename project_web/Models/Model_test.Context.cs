@@ -27,5 +27,6 @@ namespace project_web.Models
     
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<fin_rpt> fin_rpt { get; set; }
     }
 }
