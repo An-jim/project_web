@@ -35,7 +35,7 @@ namespace project_web.Controllers
                         ViewBag.id = id;
                         ViewBag.password = password;
                         FormsAuthentication.RedirectFromLoginPage(id, false);
-                        return RedirectToAction("read_m", "fin_edit");
+                        return RedirectToAction("index", "employee");
                     }
                     ViewBag.error = "帳密密碼錯誤";
                 }
@@ -78,7 +78,7 @@ namespace project_web.Controllers
         // GET: employee/Create
         public ActionResult Create()
         {
-            return View(db);
+            return View(new Employees());
         }
 
         // POST: employee/Create
@@ -104,8 +104,8 @@ namespace project_web.Controllers
         public ActionResult Edit(int id)
         {
 
-            var admin = db.Employees.Where(m => m.EmployeeID == id).FirstOrDefault();
-            return View(admin);
+            var emo_up = db.Employees.Where(m => m.EmployeeID == id).FirstOrDefault();
+            return View(emo_up);
         }
 
         // POST: employee/Edit/5
@@ -132,16 +132,20 @@ namespace project_web.Controllers
         // GET: employee/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var emp_d = db.Employees.Where(m => m.EmployeeID == id).FirstOrDefault();
+            return View(emp_d);
         }
 
         // POST: employee/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Employees emp)
         {
             try
             {
                 // TODO: Add delete logic here
+                var emp_d = db.Employees.Where(m => m.EmployeeID == id).FirstOrDefault();
+                db.Employees.Remove(emp_d);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
