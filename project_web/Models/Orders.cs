@@ -28,5 +28,7 @@ namespace project_web.Models
         public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
+    
+        public virtual Employees Employees { get; set; }
     }
 }
