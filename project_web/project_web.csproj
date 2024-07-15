@@ -127,6 +127,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\LocalizationAttribute1.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\employeeController.cs" />
     <Compile Include="Controllers\financialController.cs" />
